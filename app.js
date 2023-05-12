@@ -1,10 +1,12 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
-require('dotenv').config();
+const path = require('path');
 
 const app = express();
+
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
@@ -21,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 app.use('/api/auth', userRoutes);
