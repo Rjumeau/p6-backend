@@ -69,7 +69,10 @@ exports.modifySauce = (req, res, next) => {
         res.status(401).json({ message: 'Not authorized' });
       } else {
         Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
-          .then(() => res.status(200).json({ message: 'Sauce successfully modified!' }))
+          .then(() =>
+            res.status(200).json({ message: 'Sauce successfully modified!' }
+          ))
+
           .catch(error => res.status(401).json({ error }));
       }
     })
