@@ -11,6 +11,6 @@ module.exports = (req, res, next) => {
     };
     next();
   } catch (error) {
-    res.status(401).json({ message: 'Email ou mot de passe incorrect'});
+    res.status(401).json({ message: 'Email or password incorrect'});
   }
 };
