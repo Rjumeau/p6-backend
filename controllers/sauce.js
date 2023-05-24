@@ -122,6 +122,7 @@ exports.addLike = (req, res, next) => {
         return res.status(400).json({ message: 'User already disliked the sauce' });
       }
 
+      // User like logic
       if (like === 1) {
         usersLiked.push(userId);
         Sauce.updateOne({ _id: req.params.id }, { $inc: { likes: 1 }, usersLiked: usersLiked })
